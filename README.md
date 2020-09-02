@@ -1,8 +1,8 @@
 # fastapi-aws
 
-This is an example project / starter project for deploying an extensible Fastapi backend on AWS. The [fastapi documentation](https://fastapi.tiangolo.com/) is a great source of information about fastapi, but does not have a ton of details on how to deploy the app, presumably becasue there are so many options. Meanwhile the [fastapi full stack app](https://github.com/tiangolo/full-stack-fastapi-postgresql) takes a fair bit of work and cost to get up and running.
+This is an example project / starter project for deploying an extensible Fastapi backend on AWS. The [fastapi documentation](https://fastapi.tiangolo.com/) is a great source of information about fastapi, but does not have a ton of details on how to deploy a fastapi backend, presumably becasue there are so many ways one could proceed. Meanwhile the proposed deployment method for the [fastapi full stack app](https://github.com/tiangolo/full-stack-fastapi-postgresql) takes a fair bit of wrangling with docker orchestration systems to get up and running.
 
-This sample app is intended to be dead simple to deploy, and uses the brand new integration of docker with AWS ECS -- see the [docs](https://docs.docker.com/engine/context/ecs-integration/) or [github](https://github.com/docker/ecs-plugin) -- that enables you to deploy docker apps to AWS using native docker commands.
+This starter app is intended to be dead simple to deploy, and uses the brand new integration of docker with AWS ECS -- see the [docs](https://docs.docker.com/engine/context/ecs-integration/) or [github](https://github.com/docker/ecs-plugin) -- that enables you to deploy docker apps to AWS using native docker commands.
 
 While docker-compose may be somewhat overkill for this simple backend which only has a one service, the benefit is that it is easily extensible to add other services to the stack such as a database.
 
@@ -37,6 +37,11 @@ after which the site should be live at <http://127.0.0.1:8000> and the API docs 
 ## Deploying to AWS
 
 The application is deployed to AWS using the [Docker ECS integration](https://docs.docker.com/engine/context/ecs-integration/). The steps below are very similar, and largely copied, from the setup instructions of Docker's example app for deploying with the Docker ECS plugin that you can find [here](https://github.com/docker/ecs-plugin/tree/master/example).
+
+NOTE: The Docker ECS integration is only available in the Docker Edge distribution as of September 2nd 2020. It should be bundled in the main Docker distribution by the end of 2020, but if you are using this before then you will likely need to install Docker Edge:
+
+- [Docker edge for Mac](https://docs.docker.com/docker-for-mac/edge-release-notes/)
+- [Docker edge for Windows](https://docs.docker.com/docker-for-windows/edge-release-notes/)
 
 ### Setup pull credentials for private Docker Hub repositories
 
@@ -161,7 +166,7 @@ AWS console. There you will find:
 
 ### Access your API endpoints
 
-In the AWS console go to the EC2 panel and click on Load balancers. Select the Load balancer associated with this app -- it should be titled something like FastapiApp, then scroll down and copy the DNS name and enter this in your browser. You should see the {"Hello": "World"}, and you can access the example endpoint at `/example`
+In the AWS console go to the EC2 panel and click on Load balancers. Select the Load balancer associated with this app -- it should be titled something like App, then scroll down and copy the DNS name and enter this in your browser. You should see the {"Hello": "World"}, and you can access the example endpoint at `/example`
 
 ### Checkout CloudFormation
 
