@@ -5,6 +5,6 @@ services:
       context: ./backend
       dockerfile: backend.dockerfile
     x-aws-pull_credentials: your-arn-for-your-secret # <<<your arn for your secret you can get with docker ecs secret list>>>
-    image: cpheinrich/fastapi-example # Replace your-docker-hub-username before deploying
+    image: your-docker-hub-username/fastapi-example # Replace your-docker-hub-username before deploying
     ports:
       - "80:80"
